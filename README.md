@@ -1,7 +1,7 @@
-# EL-5610 Integrative Workshop  
+# EL5610 Integrative Workshop  
 ## Siwa Microcontroller Test and Interconnection Platform
 
-This repository contains the development of the project for **EL5610 Taller Integrador** course at the School of Electronic Engineering, Instituto Tecnológico de Costa Rica.
+This repository contains the development of the project for the **EL5610 Integrative Workshop ** course at the School of Electronic Engineering, Instituto Tecnológico de Costa Rica.
 
 The project consists of designing and developing a **test and interconnection platform for the Siwa microcontroller**, including schematic design, PCB layout, fabrication preparation, assembly, validation, and technical documentation.
 
