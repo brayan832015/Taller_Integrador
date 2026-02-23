@@ -37,7 +37,8 @@ Version control is handled through feature branches and structured merges into t
 
 - **Project Owner:** Brayan Barquero Madrigal  
 - **Scrum Master:** Jeffrey Salas Quiel  
-- **Team Member:** Priscilla Campos Zamora  
+- **Team Member:** Priscilla Campos Zamora
+- **Team Member:** Fiorela Chavarria Castrillo
 
 ---
 
