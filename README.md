@@ -9,8 +9,8 @@ The project consists of designing and developing a **test and interconnection pl
 
 This project is managed using the **Scrum Agile methodology**.
 
-- 📋 **DSU Meeting Notes:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/camposzamora_estudiantec_cr/IQAFBYKkyiMXT66LWdd4GuP-AaNAkA1k0BU-iLsQWG5oghw?e=UFCCqc)
-- 📊 **Gantt Chart Diagram:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/jeffrey080203_estudiantec_cr/IQC4vIYUWda1S7UyQSV2XXn_AdXE9CP3ZIskM0fl4ozcwnQ?e=fPbgaE)
+- **DSU Meeting Notes:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/camposzamora_estudiantec_cr/IQAFBYKkyiMXT66LWdd4GuP-AaNAkA1k0BU-iLsQWG5oghw?e=UFCCqc)
+- **Gantt Chart Diagram:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/jeffrey080203_estudiantec_cr/IQC4vIYUWda1S7UyQSV2XXn_AdXE9CP3ZIskM0fl4ozcwnQ?e=fPbgaE)
 
 ### Workflow includes:
 
