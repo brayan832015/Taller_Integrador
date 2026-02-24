@@ -33,12 +33,36 @@ Version control is handled through feature branches and structured merges into t
 
 ---
 
-## Team Members
+## Roles and Responsibilities
 
-- **Project Owner:** Brayan Barquero Madrigal  
-- **Scrum Master:** Jeffrey Salas Quiel  
-- **Team Member:** Priscilla Campos Zamora
-- **Team Member:** Fiorela Chavarria Castrillo
+### Brayan Barquero Madrigal – Project Owner
+- Define and prioritize tasks in the Product Backlog.
+- Decide what enters each sprint.
+- Review Pull Requests and approve or request changes.
+- Ensure deliverables meet the acceptance criteria before moving them to **Done**.
+- Take tasks from the Sprint Backlog and contribute technically to the project.
+- Work on dedicated feature branches.
+  
+### Jeffrey Salas Quiel – Scrum Master
+- Ensure the board is properly updated (tasks moved to the correct columns).
+- Lead the Daily Stand-Up (DSU) meetings.
+- Identify blockers and help resolve them.
+- Verify that each task has a clear description and an assigned responsible member.
+- Take tasks from the Sprint Backlog and contribute technically to the project.
+- Work on dedicated feature branches and create Pull Requests when tasks are completed.
+
+### Priscilla Campos Zamora & Fiorela Chavarria Castrillo – Team Members
+- Take tasks from the Sprint Backlog and move them to **In Progress**.
+- Work on dedicated feature branches.
+- Make clear commits and create a Pull Request when finished.
+- Move tasks to **Review/Testing**, and then to **Done** once approved.
+- Report blockers during meetings.
+
+---
+
+## Workflow
+
+Product Backlog → Sprint Backlog → In Progress → Review/Testing → Done
 
 ---
 
