@@ -40,15 +40,15 @@ Version control is handled through feature branches and structured merges into t
 
 ### Brayan Barquero Madrigal – Project Owner
 - Define and prioritize tasks in the Product Backlog.
-- Decide what enters each sprint.
+- Lead the Daily Stand-Up (DSU) meetings.
 - Review Pull Requests and approve or request changes.
 - Ensure deliverables meet the acceptance criteria before moving them to **Done**.
 - Take tasks from the Sprint Backlog and contribute technically to the project.
 - Work on dedicated feature branches.
   
 ### Jeffrey Salas Quiel – Scrum Master
+- Decide what enters each sprint.
 - Ensure the board is properly updated (tasks moved to the correct columns).
-- Lead the Daily Stand-Up (DSU) meetings.
 - Identify blockers and help resolve them.
 - Verify that each task has a clear description and an assigned responsible member.
 - Take tasks from the Sprint Backlog and contribute technically to the project.
