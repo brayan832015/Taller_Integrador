@@ -9,9 +9,6 @@ The project consists of designing and developing a **test and interconnection pl
 
 This project is managed using the **Scrum Agile methodology**.
 
-- **DSU Meeting Notes:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/camposzamora_estudiantec_cr/IQAFBYKkyiMXT66LWdd4GuP-AaNAkA1k0BU-iLsQWG5oghw?e=UFCCqc)
-- **Gantt Chart Diagram:** [View here](https://estudianteccr-my.sharepoint.com/:x:/g/personal/jeffrey080203_estudiantec_cr/IQC4vIYUWda1S7UyQSV2XXn_AdXE9CP3ZIskM0fl4ozcwnQ?e=fPbgaE)
-
 ### Workflow includes:
 
 - Product Backlog definition using GitHub Issues  
@@ -27,11 +24,8 @@ Version control is handled through feature branches and structured merges into t
 ## Repository Structure
 
 ```
-/docs            → Technical documentation and reports  
+/docs            → Technical documentation: Components datasheet and reports  
 /pcb             → Schematic and PCB layout files  
-/simulations     → Simulation files and analysis  
-/tests           → Validation plans and measurement results  
-/presentation    → Final presentation materials  
 ```
 
 ---
@@ -72,7 +66,7 @@ Product Backlog → Sprint Backlog → In Progress → Review/Testing → Done
 ## Tools & Technologies
 
 - PCB CAD software (Altium Designer)  
-- GitHub for version control  
+- GitHub and Altium 365 for version control  
 - Agile Scrum methodology  
 - Laboratory validation equipment  
 
