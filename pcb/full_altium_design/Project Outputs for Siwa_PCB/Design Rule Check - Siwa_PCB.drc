@@ -1,0 +1,177 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Public\Documents\Altium\Siwa_PCB_1\Siwa_PCB.PcbDoc
+Date     : 5/8/2026
+Time     : 11:15:48 PM
+
+Processing Rule : Clearance Constraint (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.3mm) (Max=0.4mm) (Preferred=0.4mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.3mm) (Max=0.5mm) (Preferred=0.5mm) (InNetClass('Power'))
+Rule Violations :0
+
+Processing Rule : Routing Topology Rule(Topology=Shortest) (All)
+Rule Violations :0
+
+Processing Rule : Routing Layers(All)
+Rule Violations :0
+
+Processing Rule : Routing Via (MinHoleWidth=0.3mm) (MaxHoleWidth=0.72mm) (PreferredHoleWidth=0.6mm) (MinWidth=0.63mm) (MaxWidth=1.28mm) (PreferedWidth=1mm) (All)
+Rule Violations :0
+
+Processing Rule : Differential Pairs Uncoupled Length using the Gap Constraints (Min=0.254mm) (Max=0.254mm) (Prefered=0.254mm)  and Width Constraints (Min=0.381mm) (Max=0.381mm) (Prefered=0.381mm) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)
+Rule Violations :0
+
+Processing Rule : Pads and Vias to follow the Drill pairs settings
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.2mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Component Clearance Constraint ( Horizontal Gap = 0.254mm, Vertical Gap = 0.254mm ) (All),(All) 
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('UART_TX'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('1.8V'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('POC_CONTROL'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_6_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_7'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('MAIP'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_0_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_0'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_4_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_2'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_1'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_7_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('H_LED_4'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_4'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_3'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('1V'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_5_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_1'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_3'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_1_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_6'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GND'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('UART_RX'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_5'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_7'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_6'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_3_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_5'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('H_LED_6'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('3V'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_2_OUT'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_2'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_LED_4'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('H_LED_7'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('H_LED_5'))
+Rule Violations :0
+
+Processing Rule : Supply Net(s)(InNet('GPIO_PAD_0'))
+Rule Violations :0
+
+
+Violations Detected : 0
+Waived Violations : 0
+Time Elapsed        : 00:00:06
