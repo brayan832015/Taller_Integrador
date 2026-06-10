@@ -89,6 +89,348 @@ Altium, PCB, Siwa.
 
 %¿Cómo se prueba la integridad de la tarjeta? Explicar el procedimiento seguido.
 
+En esta sección se documenta el procedimiento sistemático de depuración y validación 
+llevado a cabo sobre la tarjeta PCB fabricada para la plataforma de pruebas del
+microcontrolador Siwa. El proceso siguió una lógica de diagnóstico estructurada, partiendo
+de la identificación de los síntomas iniciales observados tras el ensamblaje, avanzando
+hacia la verificación funcional de bloques
+individuales, y concluyendo con un análisis de la evidencia experimental que
+permite establecer la causa más probable de fallo. El objetivo central fue determinar si
+los problemas observados correspondían a errores de diseño en el esquemático o en el
+\textit{layout}, o bien a condiciones originadas durante el proceso de fabricación o ensamblaje.
+
+%---------------------------------------------------------
+\subsection{Cortocircuitos durante el ensamblaje}
+%---------------------------------------------------------
+
+Durante el proceso de ensamblaje de los componentes sobre la tarjeta fabricada se detectaron
+cortocircuitos en varios componentes de montaje superficial (SMD). Ante esta situación, se realizaron trabajos
+con el cautín con el fin de corregir las uniones de soldadura defectuosas.
+Sin embargo, el tamaño reducido de los encapsulados involucrados 
+hizo que esto resultara técnicamente exigente. En algunos casos,
+el proceso derivó en el deterioro o remoción física de los componentes afectados, con el
+propósito de evitar daños adicionales sobre las pistas y el substrato de la tarjeta.\\
+
+De manera específica, los \textit{level shifters} LS\_2, LS\_3 y LS\_4 y el \textit{buffer} GB1 fueron removidos
+como consecuencia de cortocircuitos detectados durante el ensamblaje o durante el proceso
+de retrabajo. Adicionalmente, se constató que el regulador de 1.8\,V no quedó correctamente
+fijado a la tarjeta tras el proceso de soldadura, constituyendo una deficiencia de ensamblaje
+adicional e independiente de la condición eléctrica de las vías.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/short1.png}
+    \caption{Cortocircuitos detectados en componentes SMD tras el ensamblaje de la tarjeta.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Figures/validation/short2.png}
+    \caption{Cortocircuito detectado en componente SMD tras el ensamblaje de la tarjeta.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/testing_shorts.png}
+    \caption{Verificación de continuidad con el multímetro para comprobar cortocircuitos.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/validation/fix_attempt.png}
+    \caption{Intento de reparación de los cortocircuitos.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Figures/validation/result_damaged_board.png}
+    \caption{Deterioro y remoción de componentes SMD durante el proceso de retrabajo,
+             incluyendo \textit{level shifters} y \textit{buffer} afectados por cortocircuito.}
+\end{figure}
+
+%---------------------------------------------------------
+\subsection{Prueba de continuidad}
+%---------------------------------------------------------
+
+Con el propósito de conocer el estado eléctrico de la tarjeta de manera sistemática,
+se realizaron pruebas de continuidad utilizando un multímetro. El procedimiento consistió en comparar
+la conectividad eléctrica medida sobre la PCB fabricada contra la topología de conexiones
+definida en el diseño original realizado en \textit{Altium Designer}, empleando el esquemático y
+el \textit{layout} como referencia. Se verificaron los siguientes bloques y elementos: 
+
+\begin{itemize}
+    \item Conector de alimentación (\textit{Power\_header} 4$\times$2)
+    \item Conector de interfaz \textit{HEADER\_20x2} de 40 pines
+    \item Reguladores de voltaje (MAX8510EXK30+T para 3\,V, MAX8510EXK18+T para 1.8\,V y TPS71710DCKT para 1\,V)
+    \item Oscilador ASE3-20.000MHZ-KT y su \textit{buffer} de reloj
+    \item Conector de memoria (\textit{MEMORY\_CONNECTOR})
+    \item Conectores de Siwa (\textit{Siwa\_receiver\_1} a \textit{Siwa\_receiver\_4}), 
+    \item \textit{Level shifters} TCA9406DCUR, 
+    \item \textit{buffers} para GPIOs (74LVC2G17GW)
+    \item Base para la pantalla OLED (\textit{OLED\_SCREEN\_BASE})
+    \item LEDs con sus resistencias limitadoras de corriente
+    \item Conectores de señales auxiliares (\textit{GPIOs\_LEDs}, \textit{GPIOs\_Display}, \textit{No\_needed\_signals})
+\end{itemize}
+
+
+Los resultados muestran bastantes discontinuidades eléctricas. 
+Las conexiones establecidas completamente dentro de una misma capa
+de cobre mostraron, en términos generales, continuidad eléctrica adecuada. En contraste,
+la gran mayoría de las conexiones que requieren transición entre capas a través de vías
+o elementos \textit{through-hole} presentaron discontinuidad eléctrica.\\
+
+Las tensiones de
+salida de los tres reguladores no se distribuyen hacia los bloques que las requieren, dado
+que las rutas de distribución implican transiciones entre capas mediante vías; los pines de
+alimentación (1\,V, 1.8\,V y 3\,V) y de GND que dependen de
+vías no presentan continuidad hacia los nodos destino; las señales SPI asociadas a la
+memoria externa muestran ausencia de continuidad desde los pines correspondientes del
+microcontrolador; las señales GPIO hacia la pantalla OLED y sus \textit{buffers} aparecen
+interrumpidas; y múltiples pines de los \textit{level shifters} y \textit{buffers} de GPIOs tienen
+desconexión eléctrica respecto a sus fuentes o destinos de señal.\\
+
+El conector \textit{No\_needed\_signals} mostró continuidad correcta en todas sus señales hacia el microcontrolador. 
+El nodo de GND resultó alcanzable en los headers de interfaz con Siwa. Durante las pruebas del \textit{switch} de 
+reinicio se detectó que el pin 4 del componente, que según el diseño debe conectarse a GND, 
+aparecía eléctricamente desconectado, lo cual se analiza en detalle en la sección siguiente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/testing_continuity.png}
+    \caption{Verificación de continuidad entre bloques de la PCB.}
+\end{figure}
+
+%---------------------------------------------------------
+\subsection{Validación del sistema de alimentación}
+%---------------------------------------------------------
+
+Utilizando una fuente de tensión DC se inyectó controladamente 5\,V a la entrada de alimentación los reguladores de voltaje, 
+sin embargo, al medir las tensiones de salida habían discrepancias con lo esperado, debido a esto, 
+se verificaron las conexiones de GND asociadas a los reguladores de voltaje, estas conexiones
+son a través de vías, de forma que la falta de continuidad en dichas vías priva
+a los reguladores del GND necesario para su correcto funcionamiento.
+Esta condición explica por qué, a pesar de que la tensión de entrada a los reguladores
+se encuentra disponible, los dispositivos no pueden establecer las tensiones de salida esperadas. 
+Adicionalmente, el regulador de 1.8\,V presentó la dificultad adicional de no haber quedado correctamente soldado al
+substrato durante el ensamblaje, lo que agravó la situación de ese nodo en particular.
+
+%---------------------------------------------------------
+\subsection{Verificación del oscilador}
+%---------------------------------------------------------
+
+Debido al sistema de alimentación defectuoso de la tarjeta, se procedió a alimentar externamente el oscilador
+ASE3-20.000MHZ-KT mediante la fuente de alimentación DC, suministrando directamente la
+tensión nominal de operación de 1.8\,V a sus pines correspondientes, sin depender de las
+rutas de distribución de potencia de la PCB.\\
+
+Con el oscilador así alimentado, se conectó un osciloscopio al pin de salida del componente
+para verificar la señal generada. La medición reveló la presencia de una oscilación
+periódica estable con una frecuencia de 20\,MHz, valor que coincide con la frecuencia
+nominal especificada por el fabricante.\\
+
+El oscilador opera correctamente cuando recibe alimentación adecuada, lo que indica que
+el componente no presenta defectos intrínsecos ni daños atribuibles al proceso de
+ensamblaje. La cadena de señal de reloj interna de la tarjeta
+(oscilador $\rightarrow$ \textit{CLK\_buffer}) resultó completamente
+continua según las pruebas con el osciloscopio. Su limitación operativa se
+debe exclusivamente a la imposibilidad de recibir alimentación a través del sistema de
+distribución de potencia de la tarjeta.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/f_oscillator.png}
+    \caption{Medición de la señal de salida del oscilador ASE3-20.000MHZ-KT mediante
+             osciloscopio con alimentación externa directa. Se observa una oscilación
+             estable a 20\,MHz, coincidente con la especificación del fabricante.}
+\end{figure}
+
+%---------------------------------------------------------
+\subsection{Verificación funcional de LEDs}
+%---------------------------------------------------------
+
+Se realizó una prueba sobre el LED\,2, correspondiente a uno de los ocho LEDs azules 
+presentes en la tarjeta. El objetivo fue determinar si el bloque compuesto
+por el LED y su resistencia limitadora de corriente en serie es funcional en condiciones
+de alimentación directa, con independencia de las interrupciones presentes en el sistema
+de distribución de señales de la PCB.\\
+
+Para realizar la prueba, se inyectaron 3\,V directamente sobre el pin del conector
+\textit{HEADER\_20x2} que se encuentra conectado al ánodo del LED\,2, correspondiente
+al pin\,27 del mencionado conector según la topología de conexiones del diseño. Dado que
+la conexión de GND desde la resistencia limitadora en serie se encontraba
+interrumpida por la misma condición de discontinuidad observada en el resto de la tarjeta,
+dicha conexión fue puenteada externamente durante la prueba. Las mediciones obtenidas con el multímetro fueron las siguientes:
+
+\begin{itemize}
+    \item Caída de tensión sobre el LED: $V_\text{LED} = 2.59\,\text{V}$
+    \item Caída de tensión sobre la resistencia en serie: $V_R = 0.464\,\text{V}$
+    \item Resistencia en serie: $R = 300\,\Omega$\\
+\end{itemize}
+
+A partir de estas mediciones, la corriente de operación del LED se calcula aplicando la
+Ley de Ohm a la resistencia limitadora de corriente:
+
+\[
+I = \frac{V_R}{R}
+\]
+
+\[
+I = \frac{0.464}{300}
+\]
+
+\[
+I \approx 1.55\,\text{mA}
+\]
+
+La suma de las caídas de tensión medidas ($2.59\,\text{V} + 0.464\,\text{V} = 3.054\,\text{V}$)
+es consistente con la tensión de alimentación aplicada de 3\,V, dentro de las tolerancias
+propias del instrumento de medición. La corriente de operación obtenida (1.55\,mA) y la caída de 
+tensión medida (2.59\,V) es correcta según la hoja de datos del LED utilizado.\\
+
+Esta prueba demuestra que el bloque LED\,2 y su resistencia asociada funcionan
+correctamente, y que la ruta de señal entre el pin 27 del \textit{HEADER\_20x2} y el ánodo
+del LED presenta continuidad eléctrica.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\linewidth]{Figures/validation/v_led.png}
+    \caption{Prueba del LED\,2 con alimentación directa puenteada desde el
+             \textit{HEADER\_20x2}. Se indica la medición de caída de tensión en el
+             LED ($2.59\,\text{V}$).}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\linewidth]{Figures/validation/v_resistor.png}
+    \caption{Prueba del LED\,2 con alimentación directa puenteada desde el
+             \textit{HEADER\_20x2}. Se indica la medición de caída de tensión 
+             en la resistencia en serie ($0.464\,\text{V}$).}
+\end{figure}
+
+
+\subsection{Clasificación del estado funcional por bloques}
+
+Los resultados de las pruebas permiten clasificar los bloques de la tarjeta según su
+estado funcional observado. El oscilador tiene un correcto funcionamiento
+con alimentación externa (20\,MHz verificados mediante osciloscopio), y la cadena interna
+de reloj presenta continuidad eléctrica correcta. El LED\,2 opera adecuadamente cuando
+se le proporciona alimentación de manera directa, con valores de
+corriente y tensión son consistentes con las características del componente. El
+conector \textit{No\_needed\_signals} mostró continuidad correcta en todas sus señales
+hacia el microcontrolador.\\
+
+Los bloques que no pudieron operar bajo las condiciones de la tarjeta
+fabricada incluyen: la distribución de las tensiones de alimentación de 3\,V, 1.8\,V y
+1\,V hacia los bloques consumidores; el sistema de interfaz SPI hacia la memoria externa
+SST25WF080B, sin continuidad eléctrica entre los pines de Siwa y los pines del conector
+de memoria; los cuatro \textit{level shifters} TCA9406DCUR (tres de los cuales fueron
+además removidos físicamente de la tarjeta); los \textit{buffers} GPIO 74LVC2G17GW asociados tanto
+a los LEDs como a la pantalla OLED; la pantalla OLED, sin señales de control ni
+alimentación adecuadas; y la mayoría de las señales del conector \textit{HEADER\_20x2}
+que requieren transiciones entre capas para su correcto funcionamiento.
+
+\subsection{Patrón de fallos y diferenciación entre error de diseño y error de
+fabricación}
+
+El patrón de fallos no es aleatorio ni atribuible a un único bloque funcional, sino que es sistemático y afecta a la
+totalidad de la tarjeta. Cada fallo observado corresponde a una conexión que, según el
+\textit{layout} diseñado en \textit{Altium Designer}, requiere la transición entre capas de cobre
+a través de una vía o un elemento \textit{through-hole}. En contraste, las conexiones
+establecidas completamente dentro de una misma capa de cobre demostraron continuidad
+eléctrica correcta en todos los casos verificados.\\
+
+Si el origen de los fallos
+fuera un error de diseño en el esquemático o en el \textit{layout}, cabría esperar fallos
+específicos y localizados en bloques concretos, vinculados a errores de conexión puntuales
+y sin un mecanismo de fallo común. Sin embargo, el hecho de que múltiples bloques
+funcionales independientes entre sí (el sistema de alimentación, la interfaz de memoria,
+el control de la pantalla OLED, los \textit{buffer} de LEDs y los \textit{level shifters}) presenten
+fallos de manera simultánea bajo el mismo mecanismo hace que resulte inconsistente
+atribuir la causa a errores de diseño particulares. Los fallos son hallazgos consistentes
+con un problema estructural de la tarjeta.\\
+
+No obstante, el proceso de diagnóstico permitió identificar una segunda categoría
+de fallo, de naturaleza distinta y atribuible al diseño. Durante las pruebas sobre el
+\textit{switch} de reinicio SW1 (B3F-1000s) se verificó que el pin 4 del componente,
+correspondiente al nodo de GND, no presentaba continuidad con el plano de tierra de la
+tarjeta. El análisis del \textit{footprint} utilizado reveló que los pines 1 y 4 están
+intercambiados respecto al componente real: el esquemático es correcto y sus conexiones
+coinciden con la hoja de datos del fabricante, pero el \textit{footprint} obtenido de
+una biblioteca de terceros no representa fielmente la disposición física de las patillas
+del componente. Como consecuencia, la red de GND queda físicamente soldada a la
+ubicación de la patilla que el componente real asigna al terminal opuesto, produciendo
+una conexión permanente de GND sobre la línea de reinicio del sistema. Dado que la
+señal de \textit{reset} opera activa en bajo, esta condición mantiene al microcontrolador
+en estado de reinicio de forma permanente, sin posibilidad de corrección por retrabajo.
+Este hallazgo constituye un error de diseño verificable e independiente del problema de
+metalización.
+
+\subsection{Hipótesis sobre la causa del fallo}
+
+A partir de la evidencia acumulada, los resultados sugieren que los fallos observados son
+atribuibles a deficiencias en la metalización de las vías y conexiones
+\textit{through-hole} de la tarjeta fabricada. En una tarjeta de circuito impreso
+multicapa, la metalización de las vías constituye el mecanismo físico que garantiza el
+paso de corriente eléctrica entre capas de cobre. Si dicha metalización es deficiente o
+inexistente, cualquier conexión que requiera transitar por esa vía queda eléctricamente
+abierta, independientemente de si las pistas en las capas adyacentes están correctamente
+diseñadas y fabricadas.\\
+
+Esta condición explicaría de manera
+unificada la totalidad de los fenómenos observados: la imposibilidad de distribución de las
+tensiones de alimentación, la ausencia de retorno de GND funcional en los reguladores de
+voltaje, la interrupción de las señales SPI hacia la memoria, la desconexión de las señales
+GPIO hacia la pantalla OLED y sus \textit{buffers}, y la falta de continuidad en los
+\textit{level shifters} y \textit{buffers} de señal.\\
+
+La diferencia entre los bloques funcionales y los no funcionales es coherente con esta
+interpretación. Los elementos que operaron correctamente (la cadena de reloj, las
+señales \textit{No\_needed\_signals}, el GND en ciertos nodos y los LEDs con alimentación
+puenteada) comparten la característica de estar interconectados predominantemente en la
+misma capa de cobre, sin requerir transiciones entre capas para establecer su
+conectividad. Los elementos que no funcionaron dependen, sin excepción, de vías para
+establecer sus interconexiones funcionales, ya sea para las señales de control, para la
+alimentación o para GND.\\
+
+En cuanto a los cortocircuitos detectados durante el ensamblaje y el retrabajo
+subsiguiente que resultó en la remoción de algunos \textit{level shifters}, esto se debe 
+a la poca experiencia y a la complejidad del proceso de
+ensamblaje, relacionado con dificultades inherentes a los encapsulados de
+dimensiones reducidas. No obstante, incluso en ausencia de dichos cortocircuitos, la
+falta de continuidad en las vías habría impedido igualmente la operación de los bloques
+afectados, ya que la ruta eléctrica entre el microcontrolador y cada uno de esos
+componentes transita obligatoriamente por vías.
+
+%---------------------------------------------------------
+\subsection{Conclusiones del proceso de validación}
+%---------------------------------------------------------
+
+El proceso de validación de la tarjeta de pruebas del microcontrolador Siwa se realizó
+siguiendo un procedimiento sistemático de diagnóstico, estructurado en etapas progresivas
+que permitieron acumular evidencia experimental de manera ordenada.\\
+
+La metodología aplicada permitió distinguir con claridad entre errores de diseño y errores
+de fabricación. La evidencia experimental acumulada indica que el esquemático y el
+\textit{layout} del sistema son funcionalmente correctos: el oscilador opera a 20\,MHz con
+alimentación directa, el LED\,2 funciona con los valores de corriente y tensión esperados
+($I \approx 1.55\,\text{mA}$, $V_\text{LED} = 2.59\,\text{V}$), y las rutas de señal en
+capa única presentan continuidad eléctrica adecuada. Estos resultados descartan errores en el 
+esquemático eléctrico como causa raíz de los fallos generalizados observados. Sin embargo, 
+el proceso de diagnóstico identificó un error de diseño puntual en el \textit{footprint} 
+del \textit{switch} SW1, cuyos pines 1 y 4 están intercambiados respecto al componente real, 
+provocando una condición de reinicio permanente del microcontrolador.\\
+
+En contraste, todas las conexiones que implican transiciones entre capas mediante vías o
+elementos \textit{through-hole} presentaron discontinuidad eléctrica. Los resultados sugieren que la principal causa de fallo corresponde a
+problemas de metalización en vías y conexiones \textit{through-hole}, afectando la
+continuidad eléctrica entre capas. Esta condición es consistente con la totalidad de los
+síntomas observados: la imposibilidad de distribución de potencia, la interrupción de
+señales de control en bloques independientes, y la inoperatividad generalizada de la
+tarjeta bajo condiciones de alimentación estándar. La evidencia obtenida apunta a un
+defecto de fabricación que afecta específicamente la interconexión entre capas, y no a
+errores conceptuales en el diseño eléctrico del sistema.
+
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Proceso operativo
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
