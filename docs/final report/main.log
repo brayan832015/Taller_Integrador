@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.26)  8 JUN 2026 18:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.26)  9 JUN 2026 18:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -518,10 +518,10 @@ LaTeX Warning: Unused global option(s):
     [trans].
 
 (main.aux
-LaTeX Info: Redefining \. on input line 12.
-LaTeX Info: Redefining \% on input line 12.
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 12.
+(babel)             Reported on input line 11.
 )
 \openout1 = `main.aux'.
 
@@ -592,33 +592,113 @@ LaTeX Font Info:    Calculating math sizes for size <11> on input line 53.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 53.
  (C:\Users\Priscilla\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [1{C:/Users/Priscilla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+)
+<Figures/making/1_fabricacion_drilling.png, id=53, 713.66624pt x 531.48563pt>
+File: Figures/making/1_fabricacion_drilling.png Graphic file (type png)
+<use Figures/making/1_fabricacion_drilling.png>
+Package pdftex.def Info: Figures/making/1_fabricacion_drilling.png  used on input line 91.
+(pdftex.def)             Requested size: 206.39685pt x 153.70517pt.
+<Figures/making/3_fabricacion_drilling.png, id=55, 578.16pt x 447.17062pt>
+File: Figures/making/3_fabricacion_drilling.png Graphic file (type png)
+<use Figures/making/3_fabricacion_drilling.png>
+Package pdftex.def Info: Figures/making/3_fabricacion_drilling.png  used on input line 98.
+(pdftex.def)             Requested size: 206.39685pt x 159.6303pt.
+<Figures/making/6_fabricacion_baño_carbon.jpeg, id=57, 694.84593pt x 694.84593pt>
+File: Figures/making/6_fabricacion_baño_carbon.jpeg Graphic file (type jpg)
+<use Figures/making/6_fabricacion_baño_carbon.jpeg>
+Package pdftex.def Info: Figures/making/6_fabricacion_baño_carbon.jpeg  used on input line 112.
+(pdftex.def)             Requested size: 206.39685pt x 206.3879pt.
+ [1{C:/Users/Priscilla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
+ <./Figures/making/1_fabricacion_drilling.png> <./Figures/making/3_fabricacion_drilling.png>]
+<Figures/making/8_fabricacion_placa_seca_carbon.jpeg, id=74, 715.92468pt x 715.92468pt>
+File: Figures/making/8_fabricacion_placa_seca_carbon.jpeg Graphic file (type jpg)
+<use Figures/making/8_fabricacion_placa_seca_carbon.jpeg>
+Package pdftex.def Info: Figures/making/8_fabricacion_placa_seca_carbon.jpeg  used on input line 122.
+(pdftex.def)             Requested size: 206.39685pt x 206.38933pt.
+<Figures/making/9_fabricacion_baño_acido.jpeg, id=76, 599.99156pt x 599.99156pt>
+File: Figures/making/9_fabricacion_baño_acido.jpeg Graphic file (type jpg)
+<use Figures/making/9_fabricacion_baño_acido.jpeg>
+Package pdftex.def Info: Figures/making/9_fabricacion_baño_acido.jpeg  used on input line 132.
+(pdftex.def)             Requested size: 206.39685pt x 206.39307pt.
+<Figures/making/11_fabricacion_lavado_final.jpeg, id=78, 799.48688pt x 799.48688pt>
+File: Figures/making/11_fabricacion_lavado_final.jpeg Graphic file (type jpg)
+<use Figures/making/11_fabricacion_lavado_final.jpeg>
+Package pdftex.def Info: Figures/making/11_fabricacion_lavado_final.jpeg  used on input line 141.
+(pdftex.def)             Requested size: 206.39685pt x 206.38557pt.
+<Figures/making/12_fabricacion_resultado_impresion.jpeg, id=80, 647.41875pt x 621.82312pt>
+File: Figures/making/12_fabricacion_resultado_impresion.jpeg Graphic file (type jpg)
+<use Figures/making/12_fabricacion_resultado_impresion.jpeg>
+Package pdftex.def Info: Figures/making/12_fabricacion_resultado_impresion.jpeg  used on input line 157.
+(pdftex.def)             Requested size: 206.39685pt x 198.23788pt.
+ [2 <./Figures/making/6_fabricacion_baño_carbon.jpeg> <./Figures/making/8_fabricacion_placa_seca_carbon.jpeg> <./Figures/making/9_fabricacion_baño_acido.jpeg> <./Figures/making/11_fabricacion_lavado_final.jpeg>]
+<Figures/making/13_pasta_soldadura.jpeg, id=92, 538.26094pt x 538.26094pt>
+File: Figures/making/13_pasta_soldadura.jpeg Graphic file (type jpg)
+<use Figures/making/13_pasta_soldadura.jpeg>
+Package pdftex.def Info: Figures/making/13_pasta_soldadura.jpeg  used on input line 169.
+(pdftex.def)             Requested size: 206.39685pt x 206.39746pt.
+<Figures/making/14_pasta_soldadura_aplicada.jpeg, id=93, 903.375pt x 903.375pt>
+File: Figures/making/14_pasta_soldadura_aplicada.jpeg Graphic file (type jpg)
+<use Figures/making/14_pasta_soldadura_aplicada.jpeg>
+Package pdftex.def Info: Figures/making/14_pasta_soldadura_aplicada.jpeg  used on input line 176.
+(pdftex.def)             Requested size: 206.39685pt x 206.39343pt.
+<Figures/making/14_pasta_soldadura_aplicada_close_up.jpeg, id=94, 231.11343pt x 231.11343pt>
+File: Figures/making/14_pasta_soldadura_aplicada_close_up.jpeg Graphic file (type jpg)
+<use Figures/making/14_pasta_soldadura_aplicada_close_up.jpeg>
+Package pdftex.def Info: Figures/making/14_pasta_soldadura_aplicada_close_up.jpeg  used on input line 183.
+(pdftex.def)             Requested size: 206.39685pt x 206.39914pt.
+<Figures/making/15_aplicacion_pick_place.jpeg, id=97, 785.93625pt x 785.93625pt>
+File: Figures/making/15_aplicacion_pick_place.jpeg Graphic file (type jpg)
+<use Figures/making/15_aplicacion_pick_place.jpeg>
+Package pdftex.def Info: Figures/making/15_aplicacion_pick_place.jpeg  used on input line 193.
+(pdftex.def)             Requested size: 206.39685pt x 206.3893pt.
+ [3 <./Figures/making/12_fabricacion_resultado_impresion.jpeg> <./Figures/making/13_pasta_soldadura.jpeg> <./Figures/making/14_pasta_soldadura_aplicada.jpeg> <./Figures/making/14_pasta_soldadura_aplicada_close_up.jpeg>]
+<Figures/making/15_aplicacion_pick_place_close_up.jpeg, id=107, 825.0825pt x 825.0825pt>
+File: Figures/making/15_aplicacion_pick_place_close_up.jpeg Graphic file (type jpg)
+<use Figures/making/15_aplicacion_pick_place_close_up.jpeg>
+Package pdftex.def Info: Figures/making/15_aplicacion_pick_place_close_up.jpeg  used on input line 200.
+(pdftex.def)             Requested size: 206.39685pt x 206.39601pt.
+<Figures/making/16_horneado.jpeg, id=109, 903.375pt x 903.375pt>
+File: Figures/making/16_horneado.jpeg Graphic file (type jpg)
+<use Figures/making/16_horneado.jpeg>
+Package pdftex.def Info: Figures/making/16_horneado.jpeg  used on input line 209.
+(pdftex.def)             Requested size: 206.39685pt x 206.39343pt.
+<Figures/making/fabricacion_soldadura.png, id=112, 499.758pt x 244.623pt>
+File: Figures/making/fabricacion_soldadura.png Graphic file (type png)
+<use Figures/making/fabricacion_soldadura.png>
+Package pdftex.def Info: Figures/making/fabricacion_soldadura.png  used on input line 221.
+(pdftex.def)             Requested size: 206.39685pt x 101.02766pt.
+<Figures/making/19_soldadura_componentes.jpeg, id=113, 977.15062pt x 764.8575pt>
+File: Figures/making/19_soldadura_componentes.jpeg Graphic file (type jpg)
+<use Figures/making/19_soldadura_componentes.jpeg>
+Package pdftex.def Info: Figures/making/19_soldadura_componentes.jpeg  used on input line 228.
+(pdftex.def)             Requested size: 206.39685pt x 161.5468pt.
+ [4 <./Figures/making/15_aplicacion_pick_place.jpeg> <./Figures/making/15_aplicacion_pick_place_close_up.jpeg> <./Figures/making/16_horneado.jpeg> <./Figures/making/fabricacion_soldadura.png> <./Figures/making/19_soldadura_componentes.jpeg>] [5
 
 ] (main.aux
-LaTeX Info: Redefining \. on input line 12.
-LaTeX Info: Redefining \% on input line 12.
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
 )
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 22EFB45D597F3EC35D607C4C806B0DF2;895.
+(rerunfilecheck)             Checksum: ACA3EB3E0DF76073D21D1E77979F420B;1822.
  ) 
 Here is how much of TeX's memory you used:
- 17440 strings out of 467867
- 350441 string characters out of 5416398
- 733285 words of memory out of 5000000
- 46141 multiletter control sequences out of 15000+600000
- 660478 words of font info for 100 fonts, out of 8000000 for 9000
+ 17602 strings out of 467867
+ 356842 string characters out of 5416398
+ 739090 words of memory out of 5000000
+ 46278 multiletter control sequences out of 15000+600000
+ 661614 words of font info for 101 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 75i,6n,79p,649b,1044s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (1 page, 55637 bytes).
+ 75i,6n,79p,649b,1046s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Priscilla/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (5 pages, 9016916 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 57 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 158 PDF objects out of 1000 (max. 8388607)
+ 34 named destinations out of 1000 (max. 500000)
+ 172 words of extra memory for PDF output out of 10000 (max. 10000000)
 
