@@ -260,11 +260,10 @@ hizo que esto resultara técnicamente exigente. En algunos casos,
 el proceso derivó en el deterioro o remoción física de los componentes afectados, con el
 propósito de evitar daños adicionales sobre las pistas y el substrato de la tarjeta.\\
 
-De manera específica, los \textit{level shifters} LS\_2, LS\_3 y LS\_4 y el \textit{buffer} GB1 fueron removidos
+De manera específica, los \textit{level shifters} LS\_2, LS\_3 y LS\_4, y el \textit{buffer} GB1 fueron removidos
 como consecuencia de cortocircuitos detectados durante el ensamblaje o durante el proceso
 de retrabajo. Adicionalmente, se constató que el regulador de 1.8\,V no quedó correctamente
-fijado a la tarjeta tras el proceso de soldadura, constituyendo una deficiencia de ensamblaje
-adicional e independiente de la condición eléctrica de las vías.
+fijado a la tarjeta tras el proceso de soldadura, constituyendo una deficiencia de ensamblaje adicional.
 
 
 \begin{figure}[H]
@@ -316,7 +315,7 @@ el \textit{layout} como referencia. Se verificaron los siguientes bloques y elem
     \item Conector de memoria (\textit{MEMORY\_CONNECTOR})
     \item Conectores de Siwa (\textit{Siwa\_receiver\_1} a \textit{Siwa\_receiver\_4}), 
     \item \textit{Level shifters} TCA9406DCUR, 
-    \item \textit{buffers} para GPIOs (74LVC2G17GW)
+    \item \textit{Buffers} para GPIOs (74LVC2G17GW)
     \item Base para la pantalla OLED (\textit{OLED\_SCREEN\_BASE})
     \item LEDs con sus resistencias limitadoras de corriente
     \item Conectores de señales auxiliares (\textit{GPIOs\_LEDs}, \textit{GPIOs\_Display}, \textit{No\_needed\_signals})
@@ -390,8 +389,7 @@ distribución de potencia de la tarjeta.
     \centering
     \includegraphics[width=\linewidth]{Figures/validation/f_oscillator.png}
     \caption{Medición de la señal de salida del oscilador ASE3-20.000MHZ-KT mediante
-             osciloscopio con alimentación externa directa. Se observa una oscilación
-             estable a 20\,MHz, coincidente con la especificación del fabricante.}
+             osciloscopio con alimentación externa directa.}
 \end{figure}
 
 %---------------------------------------------------------
@@ -456,6 +454,236 @@ del LED presenta continuidad eléctrica.
              \textit{HEADER\_20x2}. Se indica la medición de caída de tensión 
              en la resistencia en serie ($0.464\,\text{V}$).}
 \end{figure}
+
+
+%---------------------------------------------------------
+\subsection{Caracterización de resistencia e integridad de señal en pistas}
+%---------------------------------------------------------
+
+Con el objetivo de conocer el comportamiento eléctrico de
+las pistas de la tarjeta y observar el efecto de las transiciones entre capas sobre
+la integridad de señal, se realizó una serie de mediciones utilizando un generador de
+funciones y un osciloscopio. Se seleccionaron tres pistas de la tarjeta
+y en cada una se inyectó una señal cuadrada de amplitud 1\,V 
+a cuatro frecuencias: 20\,kHz, 50\,kHz, 100\,kHz y 1\,MHz. El límite superior de
+1\,MHz se estableció debido a que a partir de esa frecuencia el generador de funciones
+comenzaba a deformar la señal cuadrada. Adicionalmente, se midió la resistencia de cada pista
+con el multímetro.\\
+
+Previo a las mediciones, los cables de prueba del multímetro fueron medidos de forma
+independiente, obteniéndose una resistencia de 10.3\,$\Omega$, valor que representa
+un desplazamiento en todas las lecturas de resistencia de pistas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Figures/validation/cables_resistance.jpeg}
+    \caption{Resistencia de los cables de medida: 10.3\,$\Omega$.}
+\end{figure}
+
+Los valores de resistencia medidos en las tres pistas, junto con los valores netos
+descontando la contribución de los cables, se resumen en la
+Tabla~\ref{tab:pistas_resistencia}.
+
+\begin{table}[H]
+\centering
+\caption{Resistencia medida en las tres pistas analizadas.}
+\label{tab:pistas_resistencia}
+\begin{tabular}{clcc}
+\hline
+\textbf{Pista} & \textbf{Descripción} &
+$\boldsymbol{R_\text{medida}}$ (\si{\ohm}) &
+$\boldsymbol{R_\text{neta}}$ (\si{\ohm}) \\
+\hline
+1 & GND: \textit{Power\_header} $\rightarrow$ Siwa          &  79.1 &  68.8 \\
+2 & GPIO de Siwa $\rightarrow$ \textit{HEADER\_20x2}        & 320.0 & 309.7 \\
+3 & \textit{Buffer} GPIO $\rightarrow$ \textit{HEADER\_20x2} & 404.5 & 394.2 \\
+\hline
+\end{tabular}
+\end{table}
+
+%--- Pista 1 ---
+\subsubsection{Pista 1: GND del \textit{Power\_header} al GND de Siwa}
+
+La primera pista analizada corresponde a la ruta de GND que conecta el
+\textit{Power\_header} con el nodo de tierra del microcontrolador Siwa. Esta pista se
+ubica completamente dentro de la capa inferior de la PCB, sin requerir transición entre
+capas mediante vías o \textit{through-holes}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/path1.jpeg}
+    \caption{Ubicación de la Pista~1 en el \textit{layout}: ruta de GND del
+             \textit{Power\_header} al GND de Siwa.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Figures/validation/path1_resistance.jpeg}
+    \caption{Medición de resistencia de la Pista~1: 79.1\,$\Omega$.}
+\end{figure}
+
+La propagación de la señal cuadrada fue adecuada a 20\,kHz, 50\,kHz y 100\,kHz, con
+formas de onda bien definidas en ambos extremos de la pista. A 1\,MHz se observa
+una deformación de la señal, pero esto se debe en gran parte a que la señal
+de entrada viene deformada desde el generador de funciones.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path1_measurement_20kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path1_measurement_50kHz.png}
+    \end{minipage}
+    \caption{Pista~1: señal cuadrada a 20\,kHz (izquierda) y 50\,kHz (derecha).
+             Canal~1 (amarillo): señal inyectada. Canal~2 (magenta): señal de salida.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path1_measurement_100kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path1_measurement_1MHz.png}
+    \end{minipage}
+    \caption{Pista~1: señal cuadrada a 100\,kHz (izquierda) y 1\,MHz (derecha).}
+\end{figure}
+
+\subsubsection{Pista 2: Salida de GPIO de Siwa al \textit{HEADER\_20x2}}
+
+La segunda pista corresponde a la ruta de señal entre la salida de un GPIO del
+microcontrolador Siwa y el conector \textit{HEADER\_20x2}. Al igual que la Pista~1,
+esta conexión se establece dentro de la capa inferior de la PCB.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/path2.png}
+    \caption{Ubicación de la Pista~2 en el \textit{layout}: señal GPIO de Siwa al
+             \textit{HEADER\_20x2}.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Figures/validation/path2_resistance.jpeg}
+    \caption{Medición de resistencia de la Pista~2: 320.0\,$\Omega$.}
+\end{figure}
+
+La resistencia de 320.0\,$\Omega$ es notablemente superior a la de la Pista~1, lo cual
+es consistente con una mayor longitud o menor sección transversal de la pista, en este caso
+mayoritariamente la segunda, debido a que la Pista~1 tiene un plano completo en la capa inferior. A pesar de
+este valor, la señal se propaga correctamente,
+produciendo una deformación más pronunciada a 1\,MHz debido a la entrada deformada desde el generador de funciones.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path2_measurement_20kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path2_measurement_50kHz.png}
+    \end{minipage}
+    \caption{Pista~2: señal cuadrada a 20\,kHz (izquierda) y 50\,kHz (derecha).}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path2_measurement_100kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path2_measurement_1MHz.png}
+    \end{minipage}
+    \caption{Pista~2: señal cuadrada a 100\,kHz (izquierda) y 1\,MHz (derecha).}
+\end{figure}
+
+
+\subsubsection{Pista 3: Del \textit{buffer} de GPIO al \textit{HEADER\_20x2}}
+
+La tercera pista presenta una característica diferencial respecto a las anteriores:
+aunque la traza de cobre se ubica completamente en el plano superior del sustrato, la
+medición se realizó en los pines del conector \textit{HEADER\_20x2}, cuyos terminales
+están soldados al plano inferior. Para que la señal alcance el punto de medición debe,
+por lo tanto, transitar por la metalización del \textit{through-hole} del
+conector.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Figures/validation/path3.jpeg}
+    \caption{Ubicación de la Pista~3 en el \textit{layout}: ruta del \textit{buffer} de
+             GPIO al \textit{HEADER\_20x2}.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Figures/validation/path3_resistance.jpeg}
+    \caption{Medición de resistencia de la Pista~3: 404.5\,$\Omega$.}
+\end{figure}
+
+La resistencia medida de 404.5\,$\Omega$ es la más alta de las tres pistas analizadas.
+Este resultado es significativo porque la traza de cobre en sí misma está contenida en
+una sola capa; su resistencia intrínseca no debería ser sustancialmente mayor a la de las
+pistas anteriores para una longitud comparable. La resistencia adicional observada apunta
+a una contribución importante de la interfaz \textit{through-hole}, lo que es consistente
+con una metalización parcial o degradada en el barril del conector.\\
+
+El comportamiento en el dominio de la frecuencia refuerza esta interpretación. A 20\,kHz
+y 50\,kHz la señal se propaga, pero con una degradación ligera en la señal. A 100\,kHz la degradación
+de la forma de onda es notoria, y a 1\,MHz la señal pierde completamente la forma
+cuadrada. Este comportamiento es una consecuencia de la resistencia adicional introducida por
+el \textit{through-hole}. Los hallazgos son consistentes con una metalización existente
+pero defectuosa en la interfaz entre capas, condición que introduce una resistencia
+parásita elevada sin producir una interrupción eléctrica completa.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path3_measurement_20kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path3_measurement_50kHz.png}
+    \end{minipage}
+    \caption{Pista~3: señal cuadrada a 20\,kHz (izquierda) y 50\,kHz (derecha).}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path3_measurement_100kHz.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.48\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{Figures/validation/path3_measurement_1MHz.png}
+    \end{minipage}
+    \caption{Pista~3: señal cuadrada a 100\,kHz (izquierda) y 1\,MHz (derecha).}
+\end{figure}
+
+Los resultados de esta subsección aportan evidencia que complementa el
+diagnóstico basado en pruebas de continuidad. La comparación entre las tres pistas
+establece que: las rutas contenidas completamente en un único plano
+conductor presentan propagación de señal adecuada y resistencia en el rango esperado,
+mientras que la ruta que involucra una transición por \textit{through-hole} exhibe
+resistencia elevada y degradación de señal acelerada con la frecuencia.
+Estos hallazgos son consistentes con la presencia de una metalización defectuosa en la
+interfaz entre capas, y refuerzan la hipótesis de que el mecanismo de fallo predominante
+en la tarjeta está asociado a las interconexiones \textit{through-hole} y de vías.
 
 
 \subsection{Clasificación del estado funcional por bloques}
@@ -599,6 +827,16 @@ errores conceptuales en el diseño eléctrico del sistema.
 El proceso de fabricación de la PCB es propenso a errores debido a la manualidad de los pasos involucrados,
 desde la aplicación de la pasta de soldadura con el \textit{stencil} hasta la colocación de los componentes de montaje superficial
 con ayuda de la máquina de \textit{pick and place}, donde se debe estimar la posición y orientación de cada componente con precisión.
+
+El proceso de validación de la tarjeta PCB permitió establecer, mediante un procedimiento
+sistemático de diagnóstico, que la causa principal de inoperatividad de la tarjeta
+corresponde a deficiencias de metalización en vías y elementos \textit{through-hole},
+condición atribuible al proceso de fabricación y no al diseño eléctrico del sistema.
+Las pruebas de continuidad, la validación del sistema de alimentación y la caracterización
+de integridad de señal en pistas aportaron evidencia que sustenta esta
+conclusión: las rutas contenidas en una sola capa de cobre operaron correctamente, mientras
+que todas las conexiones que dependen de transiciones entre capas presentaron discontinuidad
+eléctrica o resistencia parásita elevada.
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Referencias
