@@ -30,7 +30,7 @@
 \renewcommand\IEEEkeywordsname{Palabras clave}
 
 \author{ \rule{\linewidth}{0.5pt}\vspace{10pt}
-\IEEEauthorblockN{Instituto Tecnológico de Costa Rica \\Escuela de Ingeniería Electrónica \\EL5610 Taller Integrador \\Prof. Luis Carlos Rosales Alpízar\\Brayan Barquero Madrigal$^{1}$, Yailyn Priscilla Campos Zamora$^{2}$, Fiorela Chavarria Castrillo$^{3}$, Jeffrey Salas Quiel$^{4}$\\brabarmad@estudiantec.cr$^{1}$, camposzamora@estudiantec.cr$^{2}$}, fchavarria@estudiantec.cr$^{3}$, jeffrey080203@estudiantec.cr$^{4}$}
+\IEEEauthorblockN{Instituto Tecnológico de Costa Rica \\Escuela de Ingeniería Electrónica \\EL5610 Taller Integrador \\Prof. Luis Carlos Rosales Alpízar\\Brayan Barquero Madrigal$^{1}$, Yailyn Priscilla Campos Zamora$^{2}$, Fiorela Chavarría Castrillo$^{3}$, Jeffrey Salas Quiel$^{4}$\\brabarmad@estudiantec.cr$^{1}$, camposzamora@estudiantec.cr$^{2}$}, fchavarria@estudiantec.cr$^{3}$, jeffrey080203@estudiantec.cr$^{4}$}
 
 \markboth{}%
 {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
@@ -42,11 +42,11 @@
 \IEEEtitleabstractindextext{%
 
 \begin{abstract}
-Resumen aquí...
+	Este trabajo presenta el diseño, fabricación y validación de una tarjeta de pruebas para la plataforma Siwa, desarrollada con el propósito de proporcionar interfaces de alimentación, comunicación y expansión para evaluar el funcionamiento del microcontrolador y sus periféricos asociados. El desarrollo incluyó la selección de componentes, elaboración de bibliotecas, diseño del esquemático y generación del \textit{layout} de la PCB utilizando Altium Designer. La tarjeta fue implementada en dos capas de cobre, incorporando polígonos para GND y alimentación, vías para transiciones entre capas y ajustes posteriores en el borde mecánico, pasando de una geometría inicial de \(10\,\text{cm} \times 10\,\text{cm}\) a una versión final de \(12\,\text{cm} \times 9\,\text{cm}\). La validación se realizó mediante pruebas de continuidad, mediciones eléctricas y ejecución del \textit{Design Rule Check} (DRC), permitiendo verificar el comportamiento de distintos módulos e identificar fallas asociadas a conexiones y ensamblaje. Los resultados obtenidos evidenciaron la utilidad de los procesos de verificación durante el desarrollo de hardware, así como la necesidad de adaptar el diseño ante cambios de requerimientos y restricciones de fabricación.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Altium, PCB, Siwa.
+Altium Designer, DRC, PCB, planos de tierra, Siwa.
 \end{IEEEkeywords}}
 
 \maketitle
@@ -72,6 +72,64 @@ Altium, PCB, Siwa.
 \section{Proceso de diseño}
 
 %Explicar los pasos que se siguieron para diseñar la PCB.
+
+El diseño de la tarjeta de pruebas para el microcontrolador Siwa se desarrolló mediante un proceso iterativo que abarcó la elaboración del esquemático, la implementación del \textit{layout} de la PCB y la verificación del diseño mediante reglas eléctricas y mecánicas. El flujo de trabajo se realizó utilizando \textit{Altium Designer}, permitiendo mantener la consistencia entre el esquemático, las bibliotecas y el diseño físico de la tarjeta.
+
+\subsection{Preparación y selección de componentes}
+
+La primera etapa consistió en la búsqueda y selección de los componentes requeridos por la plataforma de pruebas de Siwa. Para ello se consultaron las hojas de datos de cada dispositivo con el fin de verificar parámetros eléctricos, encapsulados, distribución de pines y requerimientos de alimentación. Este procedimiento permitió asegurar la compatibilidad entre los distintos bloques funcionales y evitar discrepancias entre el diseño lógico y el físico.
+
+Durante esta fase se desarrollaron las bibliotecas necesarias para el proyecto, incluyendo la creación de símbolos esquemáticos y \textit{footprints} para los distintos componentes utilizados, desde elementos discretos, como capacitores y resistencias, hasta conectores y \textit{headers}. La construcción de estas bibliotecas requirió verificar cuidadosamente la correspondencia entre la numeración de pines, los encapsulados físicos y las dimensiones mecánicas especificadas en las hojas de datos de cada dispositivo \cite{ipc7351}.
+
+\subsection{Desarrollo del esquemático}
+
+Una vez definidos los componentes, se procedió a elaborar el esquemático del sistema. Los distintos bloques funcionales fueron organizados de acuerdo con su función dentro de la plataforma, incluyendo el sistema de alimentación, los reguladores de voltaje, el oscilador, los \textit{buffers}, los \textit{level shifters}, los conectores de expansión y las interfaces hacia el microcontrolador Siwa.
+
+Durante la elaboración del esquemático se verificó la conectividad eléctrica entre nodos y se asignaron nombres a las redes de alimentación y señal. El uso de nombres de red facilita el seguimiento de conexiones complejas y reduce la probabilidad de errores durante la transferencia del diseño al PCB \cite{altium_nets}.
+
+Posteriormente, se asignaron los \textit{footprints} correspondientes a cada componente y se verificó nuevamente la correspondencia entre símbolos y encapsulados. Antes de transferir el diseño al PCB se comprobó la integridad del esquemático mediante las herramientas de compilación y verificación eléctrica disponibles en el entorno de diseño \cite{altium_schematic}.
+
+\subsection{Primera versión del PCB}
+
+Con el esquemático validado se generó el documento de PCB mediante el proceso de sincronización entre esquemático y tarjeta. Este procedimiento permite transferir automáticamente componentes, redes y restricciones hacia el \textit{layout} físico \cite{altium_pcb}.
+
+Inicialmente se definió una geometría de tarjeta de \(10\,\text{cm} \times 10\,\text{cm}\), estableciendo el borde mecánico y el área disponible para el posicionamiento de componentes. La ubicación de los elementos se realizó considerando restricciones mecánicas, acceso a conectores y facilidad de ruteo.
+
+Los conectores externos y \textit{headers} fueron colocados en posiciones accesibles desde el borde de la tarjeta, mientras que los circuitos asociados al microcontrolador Siwa fueron agrupados en regiones cercanas a sus interfaces correspondientes. Esta organización facilitó la interconexión entre bloques funcionales y el aprovechamiento del área disponible en la PCB.
+
+Una vez completado el posicionamiento inicial, se definieron las reglas y \textit{constraints} del diseño. Estas restricciones incluyeron separación eléctrica, anchos mínimos de pista, dimensiones de vías, distancias asociadas a polígonos de cobre y ubicación de elementos de \textit{silkscreen}. Los valores se establecieron considerando las recomendaciones de diseño para el proceso de fabricación disponible, las cuales indican un ancho mínimo de pista de \(0.3\,\text{mm}\), separación mínima de \(0.2\,\text{mm}\) entre \textit{traces}, pads y vías, aislamiento de \(0.4\,\text{mm}\) para planos de GND, orificio mínimo de vía \textit{through-hole} de \(0.3\,\text{mm}\) y la restricción de no colocar \textit{silkscreen} sobre pads.
+
+Con base en estas restricciones, las pistas de señal se diseñaron principalmente con anchos de \(0.3\,\text{mm}\), mientras que las redes de alimentación utilizaron anchos mayores para favorecer la conducción de corriente cuando el espacio disponible lo permitió. Asimismo, los polígonos de cobre se configuraron con una separación de \(0.4\,\text{mm}\), manteniendo compatibilidad con el proceso de fabricación y con las restricciones geométricas de la tarjeta.
+
+El ruteo se implementó sobre una PCB de dos capas, utilizando tanto la capa Top como la Bottom para distribuir las conexiones eléctricas del sistema. Esta configuración fue adecuada para el nivel de integración de la tarjeta, ya que permitió completar el ruteo sin recurrir a capas internas adicionales. Se implementaron polígonos de GND en ambas capas con el fin de proporcionar un plano de referencia continuo y facilitar el retorno de corriente. Adicionalmente, algunas redes de alimentación, como \(1\,\mathrm{V}\), \(1.8\,\mathrm{V}\), \(3\,\mathrm{V}\) y la entrada de \(5\,\mathrm{V}\), se distribuyeron mediante polígonos locales y pistas dedicadas.
+
+Durante el enrutamiento se procuró mantener trayectorias directas entre bloques relacionados, utilizando cambios de capa cuando el cruce entre señales o la congestión local lo requería. Para ello se emplearon 67 vías metalizadas, las cuales permitieron conectar la capa superior con la inferior y completar las 215 conexiones eléctricas definidas en el esquemático. De esta manera, el uso de vías se aplicó como una solución puntual para resolver cruces, acceder a conectores y mantener la continuidad del ruteo en una tarjeta de dos capas.
+
+%Cambio
+Para estas transiciones se seleccionaron vías con un orificio de \(0.3\,\text{mm}\) y un diámetro total cercano a \(1\,\text{mm}\). Estas dimensiones se ajustan a las recomendaciones de fabricación disponibles para el proyecto, donde se indicaba un orificio mínimo de \(0.3\,\text{mm}\) para vías \textit{through-hole}. La selección de este tamaño permitió mantener compatibilidad con el proceso de perforación y metalización, sin reducir excesivamente el anillo anular de cobre alrededor del orificio \cite{ipc2221}.
+
+Las pistas de señal se implementaron principalmente con anchos de \(0.3\,\text{mm}\), mientras que las líneas de alimentación emplearon anchos mayores, de hasta \(0.4\,\text{mm}\) y \(0.5\,\text{mm}\), cuando el espacio disponible lo permitió. Esta selección buscó mantener un equilibrio entre la densidad de ruteo, la capacidad de conducción de corriente y las restricciones geométricas de una PCB de dos capas \cite{ipc2221}.
+
+Para la distribución de alimentación y referencia de tierra se implementaron polígonos de cobre asociados a las redes de potencia y GND. El uso de planos de cobre reduce la impedancia de retorno, simplifica la distribución de alimentación y disminuye la cantidad de pistas requeridas \cite{johnson2003,bogatin2018}. El aislamiento configurado para los polígonos fue de \(0.4\,\text{mm}\), valor utilizado para mantener separación eléctrica respecto a otros conductores.
+
+Durante esta etapa también se ajustaron propiedades relacionadas con \textit{thermal reliefs}. En determinadas conexiones se removieron estos elementos con el fin de establecer una unión directa al plano de cobre. La utilización o eliminación de \textit{thermal reliefs} depende de requerimientos eléctricos y de ensamblaje, ya que estos afectan simultáneamente la conducción térmica y eléctrica \cite{ipc2221}.
+
+Finalizado el ruteo inicial se ejecutó el \textit{Design Rule Check} (DRC) para verificar el cumplimiento de las restricciones eléctricas y mecánicas del diseño. Las violaciones detectadas se corrigieron ajustando anchos de pistas en redes de alimentación, incrementando la separación entre conductores cuando existían conflictos de \textit{clearance}, reubicando vías para evitar interferencias con pads o polígonos, y modificando textos o elementos de serigrafía que invadían zonas de máscara de soldadura. Después de cada conjunto de cambios se volvió a ejecutar el DRC, con el fin de comprobar que las correcciones no introdujeran nuevas violaciones.
+
+\subsection{Modificación del diseño}
+
+Posteriormente se realizó una modificación de las dimensiones de la tarjeta, pasando de \(10\,\text{cm} \times 10\,\text{cm}\) a \(12\,\text{cm} \times 9\,\text{cm}\), con el fin de ajustarse a los requerimientos establecidos para la versión final del PCB. Este cambio obligó a reorganizar parte del \textit{layout}, reposicionar los \textit{headers} inferiores y rehacer secciones del ruteo.
+
+Tras completar las modificaciones se ejecutó nuevamente el DRC y se corrigieron las violaciones restantes hasta obtener un diseño libre de errores eléctricos y geométricos reportados por el sistema de verificación.
+
+
+\subsection{Documentación de salida}
+
+Una vez verificado el diseño, se generaron los archivos de fabricación requeridos para el proceso de manufactura. Entre ellos se incluyen los archivos Gerber, utilizados para describir la geometría de las capas del PCB, y los archivos de perforación o \textit{drill files}, empleados para especificar la ubicación y dimensiones de los orificios \cite{gerber_altium}.
+
+La generación de estos documentos permite transferir la información del diseño hacia los procesos de fabricación sin modificar el proyecto original. No obstante, la exportación de dichos archivos constituye una etapa complementaria al diseño \cite{gerber_altium}..
+
+
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Proceso de fabricación
@@ -824,6 +882,8 @@ errores conceptuales en el diseño eléctrico del sistema.
 
 %Al menos 1 por miembro del equipo.
 
+El proceso de diseño evidenció que el desarrollo de una PCB no depende únicamente de completar el esquemático y el ruteo inicial, sino también de responder a cambios de requerimientos dentro de plazos limitados. La modificación de las dimensiones de la tarjeta obligó a reorganizar parte del \textit{layout}, reposicionar componentes y actualizar secciones del ruteo, manteniendo la coherencia eléctrica del diseño. Esta experiencia dio paso a comprender mejor la dinámica de un proyecto de ingeniería orientado a un cliente, donde las decisiones técnicas deben ajustarse a nuevas solicitudes sin perder trazabilidad ni control sobre las reglas de diseño.
+
 El proceso de fabricación de la PCB es propenso a errores debido a la manualidad de los pasos involucrados,
 desde la aplicación de la pasta de soldadura con el \textit{stencil} hasta la colocación de los componentes de montaje superficial
 con ayuda de la máquina de \textit{pick and place}, donde se debe estimar la posición y orientación de cada componente con precisión.
@@ -843,7 +903,32 @@ eléctrica o resistencia parásita elevada.
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 \begin{thebibliography}{1} 
+	\bibitem{ipc7351}
+	IPC, \textit{IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard}. Bannockburn, IL, USA: IPC, 2010.
+	
+	\bibitem{altium_nets}
+	Altium, ``Net labels and connectivity in schematics,'' \textit{Altium Designer Documentation}. [Online]. Available: https://www.altium.com/documentation/altium-designer.
+	
+	\bibitem{altium_schematic}
+	Altium, ``Compiling and validating the design,'' \textit{Altium Designer Documentation}. [Online]. Available: https://www.altium.com/documentation/altium-designer.
+	
+	\bibitem{altium_pcb}
+	Altium, ``Transferring design data from schematic to PCB,'' \textit{Altium Designer Documentation}. [Online]. Available: https://www.altium.com/documentation/altium-designer.
+	
+	\bibitem{ipc2221}
+	IPC, \textit{IPC-2221B: Generic Standard on Printed Board Design}. Bannockburn, IL, USA: IPC, 2012.
+	
+	\bibitem{johnson2003}
+	H. Johnson and M. Graham, \textit{High-Speed Signal Propagation: Advanced Black Magic}. Upper Saddle River, NJ, USA: Prentice Hall, 2003.
+	
+	\bibitem{bogatin2018}
+	E. Bogatin, \textit{Signal and Power Integrity--Simplified}, 3rd ed. Upper Saddle River, NJ, USA: Prentice Hall, 2018.
+	
+	\bibitem{gerber_altium}
+	Altium, ``Generating Gerber and NC Drill files,'' \textit{Altium Designer Documentation}. [Online]. Available: https://www.altium.com/documentation/altium-designer.
+	
     \bibitem{Clive} C. Maxfield, The design warrior's guide to FPGAs, 1st ed. Amsterdam: Newnes/Elsevier, 2004.
 \end{thebibliography}
+
 
 \end{document}

@@ -1,0 +1,187 @@
+Board Information Report
+Filename     : C:\Users\fchav\OneDrive - Estudiantes ITCR\SEMESTRE I 2026\TALLER INTEGRADOR\GITHUB\Taller_Integrador\pcb\pcb_design\Siwa_PCB.PcbDoc
+Date         : 6/15/2026
+Time         : 3:58:45 PM
+Time Elapsed : 00:00:00
+
+General
+    Board Size, 120mmx90.0001mm
+    Components on board, 68
+count : 2
+
+Routing Information
+    Routing completion, 100.00%
+    Connections, 215
+    Connections routed, 215
+    Connections remaining, 0
+count : 4
+
+Layer, Arcs, Pads, Vias, Tracks, Texts, Fills, Regions, ComponentBodies
+    Top Layer, 0, 177, 0, 627, 0, 0, 174, 0
+    Bottom Layer, 0, 0, 0, 163, 0, 0, 71, 0
+    Mechanical 1, 0, 0, 0, 0, 1, 0, 0, 0
+    Top 3D Body, 0, 0, 0, 100, 0, 8, 0, 33
+    Top Courtyard, 0, 0, 0, 132, 0, 0, 0, 0
+    Top Component Outline, 0, 0, 0, 32, 0, 8, 0, 0
+    Top Assembly, 0, 0, 0, 100, 17, 8, 0, 7
+    Bottom Component Outline, 0, 0, 0, 0, 0, 0, 0, 0
+    Border, 0, 0, 0, 4, 0, 0, 0, 0
+    Top Designator, 0, 0, 0, 0, 16, 0, 0, 0
+    Bottom Designator, 0, 0, 0, 0, 0, 0, 0, 0
+    Mechanical 13, 0, 0, 0, 88, 0, 0, 0, 62
+    Mechanical 15, 0, 0, 0, 171, 0, 0, 0, 0
+    Top Component Center, 0, 0, 0, 66, 0, 0, 0, 0
+    Bottom Assembly, 0, 0, 0, 32, 0, 0, 0, 0
+    Bottom Courtyard, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom 3D Body, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom Component Center, 0, 0, 0, 0, 0, 0, 0, 0
+    Multi-Layer, 0, 140, 67, 0, 0, 0, 1, 0
+    Top Paste, 0, 0, 0, 0, 0, 0, 0, 0
+    Top Overlay, 12, 0, 0, 142, 137, 16, 0, 0
+    Top Solder, 0, 0, 0, 4, 0, 0, 0, 0
+    Bottom Solder, 0, 0, 0, 4, 0, 0, 0, 0
+    Bottom Overlay, 0, 0, 0, 0, 0, 0, 0, 0
+    Bottom Paste, 0, 0, 0, 0, 0, 0, 0, 0
+    Drill Guide, 0, 0, 0, 0, 0, 0, 0, 0
+    Keep-Out Layer, 0, 0, 0, 0, 0, 0, 0, 0
+    Drill Drawing, 0, 0, 0, 0, 0, 0, 0, 0
+count : 28
+
+Drill Pairs, Vias
+    Top Layer - Bottom Layer, 67
+count : 1
+
+Layer, Sq.In., Sq.MM., Percent of layer
+    Top Layer, 13.29, 8573.926, 79%
+    Bottom Layer, 14.675, 9467.463, 88%
+count : 2
+
+Non-Plated Hole Size, Pads, Vias
+    0mm, 46, 0
+count : 1
+
+Plated Hole Size, Pads, Vias
+    0mm, 131, 0
+    0.3mm, 0, 67
+    1mm, 12, 0
+    1.02mm, 32, 0
+    1.1mm, 96, 0
+count : 5
+
+Non-Plated Slot Size / Length, Pads
+count : 0
+
+Plated Slot Size / Length, Pads
+count : 0
+
+Non-Plated Square Hole Size, Pads
+count : 0
+
+Plated Square Hole Size, Pads
+count : 0
+
+Top Layer Annular Ring Size, Count
+    0.335mm, 67
+    0.5mm, 96
+    0.55mm, 8
+    0.78mm, 32
+    0.9mm, 4
+count : 5
+
+Mid Layer Annular Ring Size, Count
+    0.335mm, 67
+    0.5mm, 96
+    0.55mm, 8
+    0.78mm, 32
+    0.9mm, 4
+count : 5
+
+Bottom Layer Annular Ring Size, Count
+    0.335mm, 67
+    0.5mm, 96
+    0.55mm, 8
+    0.78mm, 32
+    0.9mm, 4
+count : 5
+
+Pad Solder Mask, Count
+    0mm, 281
+    0.1016mm, 4
+    0.5mm, 32
+count : 3
+
+Pad Paste Mask, Count
+    0mm, 317
+count : 1
+
+Pad Pwr/Gnd Expansion, Count
+    0.4mm, 317
+count : 1
+
+Pad Relief Conductor Width, Count
+    0.254mm, 317
+count : 1
+
+Pad Relief Air Gap, Count
+    0.254mm, 317
+count : 1
+
+Pad Relief Entries, Count
+    4, 317
+count : 1
+
+Via Solder Mask, Count
+    0mm, 67
+count : 1
+
+Via Pwr/Gnd Expansion, Count
+    0.4mm, 67
+count : 1
+
+Track Width, Count
+    0.05mm, 196
+    0.1mm, 321
+    0.12mm, 20
+    0.2mm, 326
+    0.3mm, 430
+    0.4mm, 223
+    0.45mm, 46
+    0.5mm, 91
+    3mm, 12
+count : 9
+
+Arc Line Width, Count
+    0.1mm, 2
+    0.25mm, 10
+count : 2
+
+Arc Radius, Count
+    0.05mm, 2
+    0.125mm, 10
+count : 2
+
+Arc Degrees, Count
+    180, 2
+    360, 10
+count : 2
+
+Text Height, Count
+    0.3mm, 1
+    1mm, 43
+    1.5mm, 59
+    1.524mm, 68
+count : 4
+
+Text Width, Count
+    0.05mm, 1
+    0.1mm, 33
+    0.254mm, 137
+count : 3
+
+Net Track Width, Count
+    0.3mm, 95
+count : 1
+
+Net Via Size, Count
+    1mm, 95
+count : 1
