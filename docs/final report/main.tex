@@ -85,9 +85,51 @@ Durante esta fase se desarrollaron las bibliotecas necesarias para el proyecto, 
 
 Una vez definidos los componentes, se procedió a elaborar el esquemático del sistema. Los distintos bloques funcionales fueron organizados de acuerdo con su función dentro de la plataforma, incluyendo el sistema de alimentación, los reguladores de voltaje, el oscilador, los \textit{buffers}, los \textit{level shifters}, los conectores de expansión y las interfaces hacia el microcontrolador Siwa.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/Esquemático.pdf}
+	\caption{Esquemático general de la tarjeta de pruebas para la plataforma Siwa.}
+	\label{fig:esquematico_general}
+\end{figure}
+
 Durante la elaboración del esquemático se verificó la conectividad eléctrica entre nodos y se asignaron nombres a las redes de alimentación y señal. El uso de nombres de red facilita el seguimiento de conexiones complejas y reduce la probabilidad de errores durante la transferencia del diseño al PCB \cite{altium_nets}.
 
 Posteriormente, se asignaron los \textit{footprints} correspondientes a cada componente y se verificó nuevamente la correspondencia entre símbolos y encapsulados. Antes de transferir el diseño al PCB se comprobó la integridad del esquemático mediante las herramientas de compilación y verificación eléctrica disponibles en el entorno de diseño \cite{altium_schematic}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/Sistema_alimentación_regulación.pdf}
+	\caption{Bloque de alimentación y regulación de voltaje de la tarjeta.}
+	\label{fig:sistema_alimentacion}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/Interfaz_Siwa.pdf}
+	\caption{Interfaz principal del microcontrolador Siwa, memoria externa y \textit{header} de expansión.}
+	\label{fig:interfaz_siwa}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/Oscilador_reloj_circuito_reinicio.pdf}
+	\caption{Circuitos de reloj, reinicio y acondicionamiento de señales asociados al sistema.}
+	\label{fig:oscilador_reset}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/Level_shifters_conexión_periféricos.pdf}
+	\caption{Bloques de conversión de nivel lógico y conexión de periféricos externos.}
+	\label{fig:level_shifters}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.50\columnwidth]{Figures/design/Indicadores_LED.pdf}
+	\caption{Banco de indicadores LED asociados a señales GPIO.}
+	\label{fig:indicadores_led}
+\end{figure}
 
 \subsection{Primera versión del PCB}
 
@@ -97,30 +139,33 @@ Inicialmente se definió una geometría de tarjeta de \(10\,\text{cm} \times 10\
 
 Los conectores externos y \textit{headers} fueron colocados en posiciones accesibles desde el borde de la tarjeta, mientras que los circuitos asociados al microcontrolador Siwa fueron agrupados en regiones cercanas a sus interfaces correspondientes. Esta organización facilitó la interconexión entre bloques funcionales y el aprovechamiento del área disponible en la PCB.
 
-Una vez completado el posicionamiento inicial, se definieron las reglas y \textit{constraints} del diseño. Estas restricciones incluyeron separación eléctrica, anchos mínimos de pista, dimensiones de vías, distancias asociadas a polígonos de cobre y ubicación de elementos de \textit{silkscreen}. Los valores se establecieron considerando las recomendaciones de diseño para el proceso de fabricación disponible, las cuales indican un ancho mínimo de pista de \(0.3\,\text{mm}\), separación mínima de \(0.2\,\text{mm}\) entre \textit{traces}, pads y vías, aislamiento de \(0.4\,\text{mm}\) para planos de GND, orificio mínimo de vía \textit{through-hole} de \(0.3\,\text{mm}\) y la restricción de no colocar \textit{silkscreen} sobre pads.
+Una vez completado el posicionamiento inicial, se definieron las reglas y \textit{constraints} del diseño. Estas restricciones incluyeron separación eléctrica, anchos de pista, dimensiones de vías, capas habilitadas para ruteo, conexión a polígonos de cobre y ubicación de elementos de \textit{silkscreen}. Los valores se establecieron considerando las recomendaciones de fabricación disponibles para el proyecto y los requerimientos eléctricos de las redes. En el diseño se configuró una separación general de \(0.25\,\text{mm}\), pistas de señal con ancho mínimo de \(0.3\,\text{mm}\) y ancho preferido de \(0.4\,\text{mm}\), mientras que las redes de alimentación se agruparon en una clase \textit{Power} con ancho mínimo de \(0.45\,\text{mm}\) y preferido de \(0.5\,\text{mm}\) \cite{ipc2221}.
 
-Con base en estas restricciones, las pistas de señal se diseñaron principalmente con anchos de \(0.3\,\text{mm}\), mientras que las redes de alimentación utilizaron anchos mayores para favorecer la conducción de corriente cuando el espacio disponible lo permitió. Asimismo, los polígonos de cobre se configuraron con una separación de \(0.4\,\text{mm}\), manteniendo compatibilidad con el proceso de fabricación y con las restricciones geométricas de la tarjeta.
+Con base en estas restricciones, las pistas de señal se diseñaron principalmente con anchos de \(0.3\,\text{mm}\), mientras que las redes de alimentación utilizaron anchos mayores para favorecer la conducción de corriente cuando el espacio disponible lo permitió. Asimismo, los polígonos de cobre se configuraron con una separación de \(0.4\,\text{mm}\), con el fin de mantener el aislamiento entre distintas redes eléctricas y evitar interferencias entre regiones de cobre adyacentes.
 
-El ruteo se implementó sobre una PCB de dos capas, utilizando tanto la capa Top como la Bottom para distribuir las conexiones eléctricas del sistema. Esta configuración fue adecuada para el nivel de integración de la tarjeta, ya que permitió completar el ruteo sin recurrir a capas internas adicionales. Se implementaron polígonos de GND en ambas capas con el fin de proporcionar un plano de referencia continuo y facilitar el retorno de corriente. Adicionalmente, algunas redes de alimentación, como \(1\,\mathrm{V}\), \(1.8\,\mathrm{V}\), \(3\,\mathrm{V}\) y la entrada de \(5\,\mathrm{V}\), se distribuyeron mediante polígonos locales y pistas dedicadas.
+El ruteo se implementó sobre una PCB de dos capas, utilizando tanto la capa Top como la Bottom para distribuir las conexiones eléctricas del sistema. Esta configuración resultó suficiente para el número de componentes y conexiones del sistema, permitiendo completar el diseño sin recurrir a capas internas adicionales. Se implementaron polígonos de GND en ambas capas con el fin de proporcionar un plano de referencia continuo y facilitar el retorno de corriente. Adicionalmente, algunas redes de alimentación, como \(1\,\mathrm{V}\), \(1.8\,\mathrm{V}\), \(3\,\mathrm{V}\) y la entrada de \(5\,\mathrm{V}\), se distribuyeron mediante polígonos locales y pistas dedicadas. Los polígonos se configuraron con una separación de \(0.4\,\text{mm}\) para mantener aislamiento eléctrico entre redes adyacentes \cite{johnson2003}.
 
-Durante el enrutamiento se procuró mantener trayectorias directas entre bloques relacionados, utilizando cambios de capa cuando el cruce entre señales o la congestión local lo requería. Para ello se emplearon 67 vías metalizadas, las cuales permitieron conectar la capa superior con la inferior y completar las 215 conexiones eléctricas definidas en el esquemático. De esta manera, el uso de vías se aplicó como una solución puntual para resolver cruces, acceder a conectores y mantener la continuidad del ruteo en una tarjeta de dos capas.
+Durante el enrutamiento se procuró mantener trayectorias directas entre bloques relacionados, utilizando cambios de capa cuando el cruce entre señales o la congestión local lo requería. Para ello se emplearon 67 vías metalizadas, las cuales permitieron conectar la capa superior con la inferior y completar las 215 conexiones eléctricas definidas en el esquemático. De esta manera, el uso de vías se aplicó como una solución puntual para resolver cruces y mantener la continuidad del ruteo en una tarjeta de dos capas.
 
-%Cambio
 Para estas transiciones se seleccionaron vías con un orificio de \(0.3\,\text{mm}\) y un diámetro total cercano a \(1\,\text{mm}\). Estas dimensiones se ajustan a las recomendaciones de fabricación disponibles para el proyecto, donde se indicaba un orificio mínimo de \(0.3\,\text{mm}\) para vías \textit{through-hole}. La selección de este tamaño permitió mantener compatibilidad con el proceso de perforación y metalización, sin reducir excesivamente el anillo anular de cobre alrededor del orificio \cite{ipc2221}.
 
-Las pistas de señal se implementaron principalmente con anchos de \(0.3\,\text{mm}\), mientras que las líneas de alimentación emplearon anchos mayores, de hasta \(0.4\,\text{mm}\) y \(0.5\,\text{mm}\), cuando el espacio disponible lo permitió. Esta selección buscó mantener un equilibrio entre la densidad de ruteo, la capacidad de conducción de corriente y las restricciones geométricas de una PCB de dos capas \cite{ipc2221}.
-
-Para la distribución de alimentación y referencia de tierra se implementaron polígonos de cobre asociados a las redes de potencia y GND. El uso de planos de cobre reduce la impedancia de retorno, simplifica la distribución de alimentación y disminuye la cantidad de pistas requeridas \cite{johnson2003,bogatin2018}. El aislamiento configurado para los polígonos fue de \(0.4\,\text{mm}\), valor utilizado para mantener separación eléctrica respecto a otros conductores.
-
-Durante esta etapa también se ajustaron propiedades relacionadas con \textit{thermal reliefs}. En determinadas conexiones se removieron estos elementos con el fin de establecer una unión directa al plano de cobre. La utilización o eliminación de \textit{thermal reliefs} depende de requerimientos eléctricos y de ensamblaje, ya que estos afectan simultáneamente la conducción térmica y eléctrica \cite{ipc2221}.
+Durante esta etapa también se ajustaron propiedades relacionadas con \textit{thermal reliefs}. En determinadas conexiones se removieron estos elementos con el fin de establecer una unión directa al plano de cobre. La utilización o eliminación de \textit{thermal reliefs} depende de requerimientos eléctricos y de ensamblaje, ya que estos modifican la transferencia de calor durante el proceso de soldadura y la conexión eléctrica con los polígonos de cobre \cite{ipc2221}.
 
 Finalizado el ruteo inicial se ejecutó el \textit{Design Rule Check} (DRC) para verificar el cumplimiento de las restricciones eléctricas y mecánicas del diseño. Las violaciones detectadas se corrigieron ajustando anchos de pistas en redes de alimentación, incrementando la separación entre conductores cuando existían conflictos de \textit{clearance}, reubicando vías para evitar interferencias con pads o polígonos, y modificando textos o elementos de serigrafía que invadían zonas de máscara de soldadura. Después de cada conjunto de cambios se volvió a ejecutar el DRC, con el fin de comprobar que las correcciones no introdujeran nuevas violaciones.
+
 
 \subsection{Modificación del diseño}
 
 Posteriormente se realizó una modificación de las dimensiones de la tarjeta, pasando de \(10\,\text{cm} \times 10\,\text{cm}\) a \(12\,\text{cm} \times 9\,\text{cm}\), con el fin de ajustarse a los requerimientos establecidos para la versión final del PCB. Este cambio obligó a reorganizar parte del \textit{layout}, reposicionar los \textit{headers} inferiores y rehacer secciones del ruteo.
 
 Tras completar las modificaciones se ejecutó nuevamente el DRC y se corrigieron las violaciones restantes hasta obtener un diseño libre de errores eléctricos y geométricos reportados por el sistema de verificación.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\columnwidth]{Figures/design/PCB-1.pdf}
+	\caption{Vista general del \textit{layout} final de la tarjeta de pruebas para el microcontrolador Siwa.}
+	\label{fig:pcb_general}
+\end{figure}
 
 
 \subsection{Documentación de salida}
