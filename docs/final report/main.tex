@@ -62,8 +62,22 @@ Altium Designer, DRC, PCB, planos de tierra, Siwa.
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 \section{Introducción}
-
 %Explicar el contexto y los alcances del proyecto.
+El desarrollo y la validación de circuitos integrados requieren plataformas físicas que permitan proporcionar las condiciones eléctricas necesarias para su operación, acceder a sus interfaces y observar su comportamiento mediante instrumentos de medición. Estas plataformas resultan especialmente importantes durante las etapas de caracterización de un dispositivo, ya que facilitan la conexión de fuentes de alimentación, señales de reloj, memorias, periféricos y puntos de prueba alrededor del circuito integrado.\\
+
+En este contexto, el microcontrolador SIWA es un dispositivo de uso general desarrollado en el DCILab del Instituto Tecnológico de Costa Rica y basado en la arquitectura abierta RISC-V 32-I. Posee una arquitectura multiciclo y fabricada en tecnología CMOS. Para utilizar el microcontrolador fuera de su encapsulado y comprobar experimentalmente sus funciones, se requiere una plataforma de interconexión capaz de suministrar sus diferentes tensiones de alimentación, proporcionar una señal de reloj estable y facilitar el acceso a sus señales de entrada y salida.\\
+
+El presente proyecto consistió en el diseño, implementación y validación de una tarjeta de circuito impreso destinada a funcionar como plataforma de pruebas para el microcontrolador SIWA. La tarjeta fue concebida para integrar los circuitos auxiliares necesarios para su operación, entre ellos reguladores de tensión, una fuente de reloj, interfaces para memoria externa, indicadores LED, una conexión para pantalla OLED, adaptación de niveles lógicos y conectores destinados al acceso, monitoreo y prueba de las señales. El trabajo abarcó las distintas etapas de desarrollo de un sistema electrónico, desde la interpretación de las especificaciones y el diseño del circuito hasta la fabricación, el ensamblaje y la evaluación experimental del PCB.\\
+
+El desarrollo se organizó mediante una metodología ágil, utilizando herramientas de planificación, seguimiento de tareas y control de versiones para coordinar el trabajo colaborativo del equipo.
+
+\subsection{Alcances}
+El alcance inicialmente establecido comprendió la selección de componentes, la elaboración del esquemático, el diseño del layout de la PCB y su verificación previa a la fabricación mediante reglas de diseño y criterios de diseño para manufactura. También incluyó la generación de los archivos necesarios para la fabricación, el ensamblaje de componentes de montaje superficial y \textit{through-hole}, y la inspección eléctrica de la tarjeta fabricada.\\
+
+Posteriormente, el proyecto contempló la validación del sistema de alimentación, la señal de reloj, las conexiones entre bloques y las interfaces asociadas al microcontrolador. Asimismo, se planteó la carga de un programa para comprobar el funcionamiento de SIWA y la caracterización de su consumo de potencia. Debido a las limitaciones encontradas durante la fabricación y el ensamblaje, el alcance experimental se ajustó a la validación individual de bloques y al diagnóstico de las fallas presentes en la tarjeta. También se documentaron la planificación del proyecto, la asignación de responsabilidades, el seguimiento de las tareas y el trabajo colaborativo realizado durante el diseño.
+
+
+
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Proceso de diseño
@@ -73,6 +87,7 @@ Altium Designer, DRC, PCB, planos de tierra, Siwa.
 
 %Explicar los pasos que se siguieron para diseñar la PCB.
 
+<<<<<<< HEAD
 El diseño de la tarjeta de pruebas para el microcontrolador Siwa se desarrolló mediante un proceso iterativo que abarcó la elaboración del esquemático, la implementación del \textit{layout} de la PCB y la verificación del diseño mediante reglas eléctricas y mecánicas. El flujo de trabajo se realizó utilizando \textit{Altium Designer}, permitiendo mantener la consistencia entre el esquemático, las bibliotecas y el diseño físico de la tarjeta.
 
 \subsection{Preparación y selección de componentes}
@@ -175,6 +190,8 @@ Una vez verificado el diseño, se generaron los archivos de fabricación requeri
 La generación de estos documentos permite transferir la información del diseño hacia los procesos de fabricación sin modificar el proyecto original. No obstante, la exportación de dichos archivos constituye una etapa complementaria al diseño \cite{gerber_altium}..
 
 
+=======
+>>>>>>> main
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Proceso de fabricación
@@ -916,8 +933,58 @@ errores conceptuales en el diseño eléctrico del sistema.
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 \section{Proceso operativo}
-
 %¿Cómo fue organizado el trabajo y la asignación de tareas y responsabilidades entre los miembros del grupo?
+
+%B: Project Manager | Yo: Scrum Master | P: Miembro | F: Miembro
+%Metodología Ágil Scrum
+%Eventos puntuados
+%Issues
+%Sprint backlog
+
+\subsection{Planificación general del proyecto}
+El desarrollo del proyecto se organizó mediante una metodología ágil basada en Scrum. Para la planificación general se elaboró un diagrama de Gantt, mostrado en la Figura~\ref{fig:gantt}, en el cual se distribuyeron las principales etapas del proyecto a lo largo del semestre. Este cronograma incluyó las actividades iniciales de aprendizaje de Scrum, Altium Designer y GitHub, seguidas por la revisión de componentes, la elaboración del esquemático, el diseño del PCB, la revisión de la propuesta, la fabricación, el ensamblaje, la validación, la documentación y la presentación final. El diagrama permitió establecer una secuencia general de trabajo y visualizar los principales hitos y periodos asignados a cada etapa.
+
+\subsection{Seguimiento y coordinación del trabajo}
+El seguimiento detallado de las actividades se realizó mediante un tablero de GitHub. Las tareas se incorporaron inicialmente al \textit{Product Backlog} y, al comienzo de cada ciclo de trabajo, se seleccionaron aquellas que formarían parte del \textit{Sprint Backlog}. Cada tarea incluía una descripción, un responsable y un estado dentro del flujo de trabajo. Conforme avanzaba su ejecución, las tareas se desplazaban por los estados \textit{In Progress}, \textit{Review/Testing} y \textit{Done}. Además, los integrantes trabajaron en ramas independientes y utilizaron \textit{Pull Requests} para revisar e integrar los cambios al repositorio principal. En la figura~\ref{fig:backlog} se muestra el tablero de Github.\\
+
+Para complementar el seguimiento del tablero se realizaron reuniones \textit{Daily Stand-Up} (DSU). Durante las primeras etapas del proyecto se efectuaron tres reuniones por semana; sin embargo, en las etapas finales la frecuencia se redujo a una reunión semanal, de acuerdo con las necesidades y el estado del proyecto. En cada reunión, los integrantes respondían tres preguntas principales: qué habían completado desde la reunión anterior, en qué trabajarían hasta la siguiente reunión y si existía algún bloqueo que afectara el avance de sus tareas. También se registraban observaciones, decisiones y notas adicionales relacionadas con el proyecto.\\
+
+La información correspondiente a cada reunión se documentó en un libro de Excel. Este registro permitió conservar evidencia del progreso de los integrantes, de las actividades planificadas para el siguiente periodo y de los obstáculos identificados durante el desarrollo. En la Figura~\ref{fig:dsu} se muestra un ejemplo del formato utilizado para documentar una de estas reuniones.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{operation/DSU.png}
+\caption{Registro de una reunión \textit{Daily Stand-Up} para el seguimiento de las tareas del proyecto.}
+\label{fig:dsu}
+\end{figure}
+
+\subsection{Asignación de roles y responsabilidades}
+La asignación de responsabilidades se realizó de acuerdo con los roles definidos para el equipo. Brayan desempeñó el rol de \textit{Product Owner}. Entre sus responsabilidades se encontraron definir y priorizar las tareas del \textit{Product Backlog}, verificar que el tablero se mantuviera actualizado, revisar los \textit{Pull Requests} y aprobar los cambios o solicitar correcciones. También comprobó que los entregables cumplieran los criterios de aceptación antes de trasladarlos al estado \textit{Done}. Además de estas funciones de coordinación y revisión, tomó tareas del \textit{Sprint Backlog} y contribuyó técnicamente al proyecto mediante el trabajo en ramas dedicadas.\\
+
+Jeffrey desempeñó el rol de \textit{Scrum Master}. Se encargó de determinar, en conjunto con el equipo, cuáles tareas ingresarían en cada \textit{sprint} y de dirigir las reuniones de seguimiento. También identificó los bloqueos comunicados por los integrantes y colaboró en la búsqueda de soluciones. Asimismo, verificó que cada tarea tuviera una descripción clara y un responsable asignado. Como parte de su contribución técnica, trabajó en tareas del \textit{Sprint Backlog}, utilizó ramas independientes y creó \textit{Pull Requests} al completar sus actividades.\\
+
+Priscilla y Fiorela participaron como integrantes del equipo de desarrollo. Sus responsabilidades consistieron en seleccionar las tareas asignadas del \textit{Sprint Backlog}, trasladarlas al estado \textit{In Progress} y desarrollar el trabajo correspondiente en ramas dedicadas. Los cambios realizados se registraban mediante \textit{commits} descriptivos y, una vez finalizada cada actividad, se creaba un \textit{Pull Request} para su revisión. Posteriormente, las tareas se trasladaban a \textit{Review/Testing} y, después de recibir aprobación, a \textit{Done}. También comunicaban durante las reuniones cualquier bloqueo o dificultad que pudiera afectar el cumplimiento de las actividades.
+
+\subsection{Gestión colaborativa del diseño y control de versiones}
+Para el desarrollo específico del esquemático y del PCB se utilizó principalmente un \textit{Workspace} compartido de Altium 365. En este espacio se almacenaron los archivos de diseño y se realizaron las modificaciones correspondientes al esquemático, la distribución de componentes y el ruteo de la tarjeta. Los integrantes podían actualizar el proyecto dentro del \textit{Workspace}, lo que permitió mantener disponible para todo el equipo la versión de trabajo más reciente.\\
+
+Altium 365 mantuvo un historial de versiones en el que se registraron las modificaciones realizadas por los diferentes integrantes. Este historial permitió identificar el autor de cada actualización, revisar la secuencia de cambios y conservar trazabilidad sobre la evolución del diseño. La Figura~\ref{fig:altium_365} muestra una parte del árbol de versiones correspondiente al proyecto almacenado en Altium 365.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{operation/altium_365.png}
+\caption{Historial de versiones del diseño del PCB en el \textit{Workspace} compartido de Altium 365.}
+\label{fig:altium_365}
+\end{figure}
+
+El \textit{Workspace} de Altium 365 y el repositorio de GitHub desempeñaron funciones diferentes y complementarias. Altium 365 se utilizó como el entorno principal para la edición colaborativa y el control de versiones del diseño electrónico. Cada integrante podía realizar y registrar cambios sobre los archivos del esquemático y del PCB dentro de este entorno.\\
+
+Después de completar y revisar un conjunto significativo de modificaciones, se incorporaba al repositorio de GitHub una versión consolidada de los archivos del PCB. Por lo tanto, no se trasladaba a GitHub cada cambio menor realizado durante el diseño, sino aquellas versiones correspondientes a etapas consideradas suficientemente completas. GitHub funcionó como el repositorio general del proyecto, mientras que Altium 365 se empleó como el repositorio de trabajo especializado para el desarrollo continuo del circuito impreso.\\
+
+Esta organización permitió diferenciar la planificación general, el seguimiento cotidiano y el trabajo técnico especializado. El diagrama de Gantt proporcionó una visión global del calendario; el tablero de GitHub permitió administrar las tareas y los entregables; las reuniones facilitaron la comunicación y la identificación de bloqueos; y Altium 365 proporcionó el entorno colaborativo necesario para desarrollar y mantener el diseño del PCB.
+
+
+
 
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 %Conclusiones
@@ -947,6 +1014,7 @@ eléctrica o resistencia parásita elevada.
 %Referencias
 %\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+<<<<<<< HEAD
 \begin{thebibliography}{1} 
 	\bibitem{ipc7351}
 	IPC, \textit{IPC-7351B: Generic Requirements for Surface Mount Design and Land Pattern Standard}. Bannockburn, IL, USA: IPC, 2010.
@@ -975,5 +1043,29 @@ eléctrica o resistencia parásita elevada.
     \bibitem{Clive} C. Maxfield, The design warrior's guide to FPGAs, 1st ed. Amsterdam: Newnes/Elsevier, 2004.
 \end{thebibliography}
 
+=======
+\begin{thebibliography}{1}
+    \bibitem{Clive} C. Maxfield, The design warrior's guide to FPGAs, 1st ed. Amsterdam: Newnes/Elsevier, 2004.
+\end{thebibliography}
+
+\onecolumn
+
+\section{Apéndice}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/operation/Gantt.png}
+    \caption{Diagrama de Gantt.}
+    \label{fig:gantt}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Figures/operation/backlog.png}
+    \caption{Tablero de Github (\textit{Backlog}).}
+    \label{fig:backlog}
+\end{figure}
+
+>>>>>>> main
 
 \end{document}
